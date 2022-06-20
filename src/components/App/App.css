@@ -7,3 +7,11 @@
   flex-direction: column;
   margin: auto
 }
+
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}

@@ -5,7 +5,7 @@ import Card from "../Card/Card"
 
 
 const App = () => {
-const [cardToggle, setCardToggle] = useState ([
+const [cardToggle, setCardToggle] = useState(false)
 const [state, setState] = useState ([
     {
       name: "ahmed",
@@ -38,14 +38,20 @@ const [state, setState] = useState ([
     setState((prevState) => {
       return prevState.filter((e, idx) => clickIdx !== idx );
     });
-    console.log(state);
   }
-  console.log(state);
+
+  
+  const toggleButton = () => {
+    setCardToggle(!cardToggle)
+  };
+
   return (
     <div className="mainContainer">
       <h1>Boys Data</h1>
-      <div style={{marginBottom: "20px:" mardin 20px}}></div>
+      <button style={{marginBottom: "20px"}} onClick={toggleButton}>{cardToggle ? "Hide Names" : "Show Names"}</button>
+      <div className={cardToggle ? "show" : "hide"}>
       <Card nameList={state} type="boys" deletFunc={deleteHandler}/>
+      </div>
     </div>
   )
 }
