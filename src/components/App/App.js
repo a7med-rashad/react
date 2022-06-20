@@ -5,7 +5,8 @@ import Card from "../Card/Card"
 
 
 const App = () => {
-  const [state, setState] = useState ([
+const [cardToggle, setCardToggle] = useState ([
+const [state, setState] = useState ([
     {
       name: "ahmed",
       age: 26,
@@ -24,11 +25,27 @@ const App = () => {
       adress: "faida",
       phone: "0153550678"
     },
-  ])
+  ]);
+
+  const deleteHandler = (e, clickIdx) => {
+    // const deleteOperation = state.filter((e, idx) => idx !== clickIdx)
+    // setState(deleteOperation)
+    // console.log(state)
+
+    // setState(state.filter((e, idx) => idx !== clickIdx))
+    // console.log(state)
+
+    setState((prevState) => {
+      return prevState.filter((e, idx) => clickIdx !== idx );
+    });
+    console.log(state);
+  }
+  console.log(state);
   return (
     <div className="mainContainer">
       <h1>Boys Data</h1>
-      <Card nameList={state} type="boys"/>
+      <div style={{marginBottom: "20px:" mardin 20px}}></div>
+      <Card nameList={state} type="boys" deletFunc={deleteHandler}/>
     </div>
   )
 }
