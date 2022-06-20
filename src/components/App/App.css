@@ -1,9 +1,3 @@
-.cardWrapper {
-  border: 1px solid gray;
-  width: 300px;
-  padding: 10px;
-  margin-bottom: 20px;
-}
 
 .mainContainer {
   display: flex;
