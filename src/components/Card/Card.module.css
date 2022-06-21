@@ -1,20 +1,19 @@
 .cardWrapper {
-    border: 1px solid gray;
-    width: 300px;
-    padding: 10px;
-    margin-bottom: 20px;
-    position: relative;
-    cursor: pointer;
+	border: 1px solid gray;
+	width: 300px;
+	padding: 10px;
+	margin-bottom: 20px;
+	position: relative;
+	border-radius: 10px;
 }
-.deletBtn {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background-color: red;
-    color: white;
-    top: -15px;
-    right: -15px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 25px;
+.deleteBtn {
+	position: absolute;
+	right: -10px;
+	top: -8px;
+	background-color: red;
+	color: white;
+	font-size: 15px;
+	padding: 10px 15px;
+	border-radius: 10px;
+	cursor: pointer;
 }
