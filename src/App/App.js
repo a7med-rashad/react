@@ -1,5 +1,5 @@
 import React, { useState } from "react";  
-import stylee from "./App.module.css"; 
+import style from "./App.module.css"; 
 import CardList from "../components/CardList/CardList" 
 import Filter from "../components/Filter/Filter"; 
 import Modal from "../components/Modal/Modal";
@@ -8,7 +8,8 @@ import Modal from "../components/Modal/Modal";
   
 const App = () => {  
   const [cardToggle, setCardToggle] = useState(true)
-  const [filter, setFilter] = useState("")  
+  const [filter, setFilter] = useState("")
+  const [showModal, setShowModal] = useState(false)
   const [state, setState] = useState ([  
     {  
       id:1,
@@ -87,14 +88,17 @@ const App = () => {
     return state
   }
   return (  
-    <div className={stylee.main}>  
-      <Modal />
+    <div className={style.main}>  
+      <Modal show={showModal} closeModal={() => setShowModal(false)}/>
       <h1> List Of Data </h1> 
-      <button style={{marginBottom: "20px"}} 
-      onClick={toggleButton}>
-        {cardToggle ? "Hide Names" : "Show Names"}
-      </button>  
-      <div className={cardToggle ? stylee.show : stylee.hide}> 
+      <div style={{ display: "flex"}}>
+        <button className={style.button} 
+        onClick={toggleButton}>
+          {cardToggle ? "Hide Names" : "Show Names"}
+        </button>  
+        <button className={style.button} onClick={() => setShowModal(true)}>New Record</button>
+      </div>  
+      <div className={cardToggle ? style.show : style.hide}> 
         <Filter Filteration={FilterName}/> 
         <CardList nameList={namesHandler()} deletFunc={deleteHandler}/>  
       </div>  
