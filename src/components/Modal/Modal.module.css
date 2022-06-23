@@ -7,17 +7,31 @@
 	background-color: black;
 	opacity: 0.8;
 	z-index: 1000;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s;
 }
-
-
+.showBack {
+	visibility: visible;
+	opacity: 0.8;
+}
 .overlay {
 	position: absolute;
 	width: 50%;
-	height: 50%;
+	padding : 30px;
 	top: 50%;
 	left: 50%;
 	background-color: white;
 	border-radius: 10px;
 	transform: translate(-50%, -50%);
 	z-index: 1500;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s;
+}
+
+
+.showOverlay {
+	visibility: visible;
+	opacity: 1;
 }

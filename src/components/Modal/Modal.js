@@ -5,27 +5,33 @@ import style from "./Modal.module.css"
 
 
 
-const Backdrop = ({ close }) => {
-	return <div className={style.backDrop} onClick={close}></div>
+const Backdrop = ({ close, show }) => {
+	return <div className={`${style.backDrop} ${show ? style.showBack : null }`} onClick={close}></div>
 
 };
-const Overlay = () => {
-	return <div className={style.overlay}></div>
-}
-
-const Modal = ({ show , closeModal }) => {
+const Overlay = ({ show }) => {
 	return (
-		show && (
+	<div className={`${style.overlay} ${show ? style.showOverlay : null }`}>
+		<form>
+			<div className={style.control}>
+				<label htmlFor="email">Name</label>
+				<input type="email" placeholder="Enter Email"/>
+			</div>
+		</form>
+	</div>
+)}
+
+const Modal = ({ show , closeModal}) => {
+	return (
 			<Fragment>
 					{ReactDOM.createPortal(
 						<Fragment>
-							<Backdrop close={closeModal}/>
-							<Overlay />
+							<Backdrop close={closeModal} show={show}/>
+							<Overlay show={show}/>
 						</Fragment>,
 						document.getElementById('modal')
 						)}
 			</Fragment>
-		)
 	);
 }
 
