@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import ReactDOM from 'react-dom';
 import style from "./Modal.module.css"
+import AddUser from "../AddUser/AddUser";
 
 
 
@@ -9,25 +10,20 @@ const Backdrop = ({ close, show }) => {
 	return <div className={`${style.backDrop} ${show ? style.showBack : null }`} onClick={close}></div>
 
 };
-const Overlay = ({ show }) => {
+const Overlay = ({children, show }) => {
 	return (
 	<div className={`${style.overlay} ${show ? style.showOverlay : null }`}>
-		<form>
-			<div className={style.control}>
-				<label htmlFor="email">Name</label>
-				<input type="email" placeholder="Enter Email"/>
-			</div>
-		</form>
+		{children}
 	</div>
 )}
 
-const Modal = ({ show , closeModal}) => {
+const Modal = ({children, show , closeModal}) => {
 	return (
 			<Fragment>
 					{ReactDOM.createPortal(
 						<Fragment>
 							<Backdrop close={closeModal} show={show}/>
-							<Overlay show={show}/>
+							<Overlay show={show}>{children}</Overlay>
 						</Fragment>,
 						document.getElementById('modal')
 						)}

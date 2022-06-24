@@ -17,7 +17,7 @@
 }
 .overlay {
 	position: absolute;
-	width: 50%;
+	width: 30%;
 	padding : 30px;
 	top: 50%;
 	left: 50%;
@@ -34,4 +34,13 @@
 .showOverlay {
 	visibility: visible;
 	opacity: 1;
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.buttonContainer Button {
+	background-color: green;
 }

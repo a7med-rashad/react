@@ -1,18 +1,18 @@
 import React, { useState }from "react";
-import style from "./Filter.module.css"
+import style from "./FilterInput.module.css"
 
 
 
-const Filter = ({Filteration}) => {
+const FilterInput = ({Filteration}) => {
     const [filter, setFilter] = useState("")
 
 
 const filterHandler = (e) => {
     const names = e.target.value
 			setFilter(names)
-      Filteration(names)
+            Filteration(names)
 }
-  
+
     return (
         <div className={style.inputDiv}>
             <input 
@@ -25,4 +25,4 @@ const filterHandler = (e) => {
     )
 }
 
-export default Filter
+export default FilterInput

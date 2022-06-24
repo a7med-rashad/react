@@ -1,8 +1,10 @@
-import React, { useState } from "react";  
+import React, { Fragment, useState } from "react";  
 import style from "./App.module.css"; 
 import CardList from "../components/CardList/CardList" 
-import Filter from "../components/Filter/Filter"; 
+import FilterInput from "../components/FilterInput/FilterInput"; 
 import Modal from "../components/Modal/Modal";
+import Button from "../components/LayOut/Button";
+import AddUser from "../components/AddUser/AddUser";
   
   
   
@@ -12,7 +14,7 @@ const App = () => {
   const [showModal, setShowModal] = useState(false)
   const [state, setState] = useState ([  
     {  
-      id:1,
+      id:1001,
       name: "ahmed",  
       age: 26,  
       adress: "moneeb",  
@@ -20,7 +22,7 @@ const App = () => {
       type: "boy"
     },  
     {  
-      id:2,
+      id:2000,
       name: "sara",  
       age: 23,  
       adress: "paris",  
@@ -28,7 +30,7 @@ const App = () => {
       type: "girl"
     },  
     {  
-      id:3,
+      id:3000,
       name: "saad",  
       age: 27,  
       adress: "manial",  
@@ -36,7 +38,7 @@ const App = () => {
       type: "boy"  
     },
     {  
-      id:4,
+      id:4000,
       name: "mariam",  
       age: 28,  
       adress: "sharkia",  
@@ -44,7 +46,7 @@ const App = () => {
       type: "girl"
     },  
     {  
-      id:5,
+      id:5000,
       name: "nada",  
       age: 25,  
       adress: "giza",  
@@ -52,7 +54,7 @@ const App = () => {
       type: "girl"
     },  
     {  
-      id:6,
+      id:6000,
       name: "amr",  
       age: 31,  
       adress: "faida",  
@@ -74,9 +76,12 @@ const App = () => {
     });  
   }  
   
-  const toggleButton = () => {  
-    setCardToggle(!cardToggle)  
-  };  
+  // const toggleButton = () => {  
+  //   setCardToggle(!cardToggle)  
+  // };  
+  const addNewUser = (data) => {
+    setState((prevState) => setState([...prevState, data]))
+  }
 
   const FilterName = (name) => {
     setFilter(name)
@@ -88,21 +93,26 @@ const App = () => {
     return state
   }
   return (  
-    <div className={style.main}>  
-      <Modal show={showModal} closeModal={() => setShowModal(false)}/>
-      <h1> List Of Data </h1> 
-      <div style={{ display: "flex"}}>
-        <button className={style.button} 
-        onClick={toggleButton}>
-          {cardToggle ? "Hide Names" : "Show Names"}
-        </button>  
-        <button className={style.button} onClick={() => setShowModal(true)}>New Record</button>
+    <Fragment>
+      <div className={style.main}>  
+        <h1> List Of Data </h1> 
+
+        <div style={{ display: "flex"}}>
+          <Button className={style.button} 
+          onClick={() => setCardToggle(!cardToggle)}>
+            {cardToggle ? "Hide Names" : "Show Names"}
+          </Button>  
+          <Button className={style.button} onClick={() => setShowModal(true)}>New Record</Button>
+        </div>  
+        <div className={cardToggle ? style.show : style.hide}> 
+          <FilterInput Filteration={FilterName}/> 
+          <CardList nameList={namesHandler()} deletFunc={deleteHandler}/>  
+        </div>  
       </div>  
-      <div className={cardToggle ? style.show : style.hide}> 
-        <Filter Filteration={FilterName}/> 
-        <CardList nameList={namesHandler()} deletFunc={deleteHandler}/>  
-      </div>  
-    </div>  
+      <Modal show={showModal} closeModal={() => setShowModal(false)}>
+        <AddUser addNewUser={addNewUser} closeModal={() => setShowModal(false)} />
+      </Modal>
+    </Fragment>
   )  
 }  
 
